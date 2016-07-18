@@ -1,3 +1,6 @@
+class DifferentCurrencyCodeError(Exception):
+    pass
+
 class Currency:
 
     def __init__(self, amount, currency_code):
@@ -8,7 +11,13 @@ class Currency:
         return self.amount == other.amount and self.currency_code == other.currency_code
 
     def __add__(self, other):
-        return self.amount + other.amount and self.currency_code == other.currency_code
+        if self.currency_code != other.currency_code:
+            raise DifferentCurrencyCodeError
+        else:
+            return Currency(self.amount + other.amount, self.currency_code)
 
     def __sub__(self, other):
-        return self.amount - other.amount and self.currency_code == other.currency_code
+        return Currency(self.amount - other.amount, self.currency_code)
+
+    def __mul__(self, other):
+        return Currency(self.amount * other, self.currency_code)
