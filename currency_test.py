@@ -29,3 +29,15 @@ def test_addition_to_currency_with_same_code():
     curr2 = Currency(10, 'USD')
 
     assert curr1 + curr2
+
+def test_subtraction_from_currency_with_same_code():
+    curr1 = Currency(10, 'USD')
+    curr2 = Currency(1, 'USD')
+
+    assert curr1 - curr2
+
+# def test_raise_different_currency_code_error():
+#     curr1 = Currency(1, 'USD')
+#     curr2 = Currency(1, 'EUR')
+#
+#     assert curr1 + curr2
