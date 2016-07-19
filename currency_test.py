@@ -8,7 +8,7 @@ def test_create_currency_with_amount_and_code():
     assert one_dollar.amount == 1
     assert one_dollar.currency_code == 'USD'
 
-def test_currency_with_same_amount_and_code_can_be_equal():
+def test_currency_with_same_amount_and_code_are_equal():
     curr1 = Currency(99, 'USD')
     curr2 = Currency(99, 'USD')
 
@@ -44,6 +44,12 @@ def test_raise_different_currency_code_error():
     curr2 = Currency(1, 'EUR')
 
     curr1 + curr2
+    curr1 - curr2
 
 def test_multiplication_by_int_float():
     assert Currency(10, 'USD') * 5 == Currency(50, 'USD')
+    assert Currency(10, 'USD') * 2.0 == Currency(20.0, 'USD')
+
+def test_create_currency_with_one_parameter():
+    assert Currency('$1') == Currency(1, 'USD')
+    assert Currency('€7.00') == Currency(7.00, 'EUR')
